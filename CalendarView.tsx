@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import Calendar from "react-calendar";
-import { format } from "date-fns";
-import { useAppointments } from "@/context/AppointmentContext";
+import { useState } from 'react';
+import Calendar from 'react-calendar';
+import { format } from 'date-fns';
+import { useAppointments } from '@/context/AppointmentContext';
 
 type ValuePiece = Date | null;
 type Value = ValuePiece | [ValuePiece, ValuePiece];
@@ -14,14 +14,16 @@ export function CalendarView() {
 
   // Function to check if a date has appointments
   const hasAppointments = (date: Date) => {
-    const formattedDate = format(date, "yyyy-MM-dd");
-    return appointments.some((appointment) => appointment.date === formattedDate);
+    const formattedDate = format(date, 'yyyy-MM-dd');
+    return appointments.some(appointment => appointment.date === formattedDate);
   };
 
   // Custom tile content to highlight dates with appointments
   const tileContent = ({ date, view }: { date: Date; view: string }) => {
-    if (view === "month" && hasAppointments(date)) {
-      return <div className="w-2 h-2 bg-blue-500 rounded-full mx-auto mt-1"></div>;
+    if (view === 'month' && hasAppointments(date)) {
+      return (
+        <div className='w-2 h-2 bg-blue-500 rounded-full mx-auto mt-1'></div>
+      );
     }
     return null;
   };
@@ -31,7 +33,7 @@ export function CalendarView() {
   };
 
   return (
-    <div className="calendar-container">
+    <div className='calendar-container'>
       <style jsx global>{`
         .react-calendar {
           width: 100%;
@@ -133,8 +135,8 @@ export function CalendarView() {
         onChange={handleDateChange}
         value={date}
         tileContent={tileContent}
-        className="rounded-lg shadow-sm bg-white dark:bg-gray-800"
+        className='rounded-lg shadow-sm bg-white dark:bg-gray-800'
       />
     </div>
   );
-} 
+}
